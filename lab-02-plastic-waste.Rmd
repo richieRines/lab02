@@ -276,7 +276,23 @@ plastic_waste %>%
          title = "Plastic waste vs. coastal population proportion",
          subtitle = "by continent") +
     theme_minimal()
+
+plastic_waste %>% 
+  mutate(coastal_pop_prop = coastal_pop / total_pop) %>%
+  filter(plastic_waste_per_cap < 3) %>%
+  ggplot(aes(x = coastal_pop_prop, y = plastic_waste_per_cap, color = continent)) + 
+    geom_point() +
+    geom_smooth(color = "black") +
+    scale_color_viridis_d() +
+    labs(x = "Coastal population proportion (Coastal / total population)", 
+         y = "Plastic waste per capita ", 
+         color = "Continent",
+         title = "Plastic waste vs. coastal population proportion",
+         subtitle = "by continent")+
+    theme_minimal()
 ```
+
+The y axis is displaying the plastic waster per capita of all the countries EXCEPT for those that have a per-capita larger than 3. The x axis took the coastal population and divided it by the total population to display the coast population proportion of each country. The graph is color coordinated to show what continent each country (point) belongs to. The line going through the graph shows the overall pattern that all the countries are following when it comes to population and waste per capita. 
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards and review the md document on GitHub to make sure you're happy with the final state of your work.*
 
