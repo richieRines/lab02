@@ -55,7 +55,7 @@ library(tidyverse)
 The dataset for this assignment can be found as a csv file in the `data` folder of your repository.
 You can read it in using the following.
 
-```{r load-data, message=FALSE, eval=TRUE}
+```{r load-data, message = FALSE, eval=TRUE}
 plastic_waste <- read_csv("data/plastic-waste.csv")
 ```
 
@@ -75,13 +75,18 @@ The variable descriptions are as follows:
 # Warm up
 
 -   Recall that RStudio is divided into four panes. Without looking, can you name them all and briefly describe their purpose?
+
 -   Verify that the dataset has loaded into the Environment. How many observations are in the dataset? Clicking on the dataset in the Environment will allow you to inspect it more carefully. Alternatively, you can type `View(plastic_waste)` into the Console to do this.
+
+There are 240 observations.
 
 ```{marginfigure}
 **Hint:** If you're not sure, run the command `?NA` which will lead you to the documentation.
 ```
 
 -   Have a quick look at the data and notice that there are cells taking the value `NA` -- what does this mean?
+
+"NA" is used as a placeholder. When a value is missing, it is filled by NA.
 
 # Exercises
 
@@ -104,6 +109,13 @@ Did you expect this result?
 You might consider doing some research on Trinidad and Tobago to see why plastic waste per capita is so high there, or whether this is a data error.
 
 1.  Plot, using histograms, the distribution of plastic waste per capita faceted by continent. What can you say about how the continents compare to each other in terms of their plastic waste per capita?
+
+```{r}
+ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap)) +
+  geom_histogram(binwidth = 0.1) +
+  facet_wrap(. ~ continent) +
+  labs(x = "Platic waste per capita", y = "Frequency")
+```
 
 ```{marginfigure}
 **NOTE:** From this point onwards the plots and the output of the code are not displayed in the lab instructions, but you can and should the code and view the results yourself.
@@ -152,7 +164,17 @@ This still doesn't look great...
 
 1.  Recreate the density plots above using a different (lower) alpha level that works better for displaying the density curves for all continents.
 
+```{r}
+ggplot(data = plastic_waste, 
+       mapping = aes(x = plastic_waste_per_cap, 
+                     color = continent, 
+                     fill = continent)) +
+  geom_density(alpha = 0.1)
+```
+
 2.  Describe why we defined the `color` and `fill` of the curves by mapping aesthetics of the plot but we defined the `alpha` level as a characteristic of the plotting geom.
+
+Color and fill are using variables so they are grouped with the data. Alpha is just using a number, though, so it is a characteristic of the graph. 
 
 🧶 ✅ ⬆️ *Now is a good time to knit your document and commit and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
