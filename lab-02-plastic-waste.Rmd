@@ -195,6 +195,8 @@ ggplot(data = plastic_waste,
 
 1.  Convert your side-by-side box plots from the previous task to [violin plots](http://ggplot2.tidyverse.org/reference/geom_violin.html). What do the violin plots reveal that box plots do not? What features are apparent in the box plots but not in the violin plots?
 
+The violin parts show the density of the continents better. The wider the shape of the "violin", the greater frequency it has. The side-by-side box plots do not show this with the accuracy that violin plots do. However, they can display the outliers on the graph, shown by the points. The violin plot does not do this, 
+
 ```{marginfigure}
 **Remember:** We use `geom_point()` to make scatterplots.
 ```
